@@ -1,9 +1,9 @@
 {
-  "name": "casbin-sequelize-adapter",
+  "name": "casequelize",
   "version": "1.0.0",
-  "description": "Sequelize adapter for Node-Casbin",
-  "main": "lib/adapter.js",
-  "typings": "lib/adapter.d.ts",
+  "description": "Casbin Sequelize adapter for Node-Casbin",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "precommit": "lint-staged",
     "prepublish": "yarn run lint && yarn run test && yarn build",
@@ -39,7 +39,7 @@
   "homepage": "https://casbin.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/node-casbin/casbin-sequelize-adapter.git"
+    "url": "https://github.com/Chalin-Shi/casequelize.git"
   },
   "keywords": [
     "casbin",
@@ -63,7 +63,7 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/node-casbin/sequelize-adapter/issues"
+    "url": "https://github.com/node-casbin/casequelize/issues"
   },
   "lint-staged": {
     "*.{ts,js}": [
