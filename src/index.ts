@@ -1,3 +1,2 @@
-import { SequelizeAdapter } from './adapter';
-const Adapter = SequelizeAdapter;
+import { SequelizeAdapter as Adapter } from './adapter';
 export {Adapter};
