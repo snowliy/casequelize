@@ -27,8 +27,7 @@ module.exports = () => {
 	// The adapter will use the MySQL database named "casbin".
 	// If it doesn't exist, the adapter will create it automatically.
   
-  const adapter = new Adapter('mysql://root:123456@localhost:3306/casbin', {}); // Your driver and data source.
-  await adapter.init(); // init your db connection and table.
+  const adapter = await Adapter.newAdapter('mysql://root:123456@localhost:3306/casbin', {}); // Your driver and data source.
   const enforcer = await Enforcer.newEnforcer('examples/rbac_model.conf', adapter);
 	
 	// Or you can use an existing DB "abc" like this:
