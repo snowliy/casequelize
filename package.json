@@ -29,7 +29,7 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
-    "casbin": "^1.1.0",
+    "casbin": "^1.1.2",
     "sequelize": "^4.38.0"
   },
   "files": [
