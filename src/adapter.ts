@@ -39,11 +39,13 @@ export class SequelizeAdapter implements Adapter {
     this.casbinRule = CasbinRule(this.sequelize);
   }
 
-  // init
-  public async init(): Promise<void> {
+  // newAdapter
+  public static async newAdapter(uri: string, config: any) {
     try {
-      await this.authenticate();
-      await this.sync();
+      const adapter = new SequelizeAdapter(uri, config);
+      await adapter.authenticate();
+      await adapter.sync();
+      return adapter;
     } catch (e) {
       throw e;
     }
@@ -147,52 +149,49 @@ export class SequelizeAdapter implements Adapter {
 
   // addPolicy adds a policy rule to the storage.
   public async addPolicy(sec: string, ptype: string, rule: string[]): Promise<void> {
-    // const {casbinRule} = this;
-    // const line: any = this.savePolicyLine(ptype, rule);
-    // await casbinRule.create(line);
-    throw new Error('not implemented');
+    const {casbinRule} = this;
+    const line: any = this.savePolicyLine(ptype, rule);
+    await casbinRule.create(line);
   }
 
   // removePolicy removes a policy rule from the storage.
   public async removePolicy(sec: string, ptype: string, rule: string[]): Promise<void> {
-    // const {casbinRule} = this;
-    // const where: any = this.savePolicyLine(ptype, rule);
-    // await casbinRule.destroy({where});
-    throw new Error('not implemented');
+    const {casbinRule} = this;
+    const where: any = this.savePolicyLine(ptype, rule);
+    await casbinRule.destroy({where});
   }
 
   // removeFilteredPolicy removes policy rules that match the filter from the storage.
   public async removeFilteredPolicy(sec: string, ptype: string, fieldIndex: number, ...fieldValues: string[]): Promise<void> {
-  //   const {casbinRule} = this;
-  //   const where: any = {p_type: ptype};
-  //   const sum: number = fieldIndex + fieldValues.length;
-  //   let count: number = 0;
+    const {casbinRule} = this;
+    const where: any = {p_type: ptype};
+    const sum: number = fieldIndex + fieldValues.length;
+    let count: number = 0;
 
-  //   if (fieldIndex <= count && sum > count) {
-  //     where.v0 = fieldValues[count - fieldIndex];
-  //   }
-  //   count += 1;
-  //   if (fieldIndex <= count && sum > count) {
-  //     where.v1 = fieldValues[count - fieldIndex];
-  //   }
-  //   count += 1;
-  //   if (fieldIndex <= count && sum > count) {
-  //     where.v2 = fieldValues[count - fieldIndex];
-  //   }
-  //   count += 1;
-  //   if (fieldIndex <= count && sum > count) {
-  //     where.v3 = fieldValues[count - fieldIndex];
-  //   }
-  //   count += 1;
-  //   if (fieldIndex <= count && sum > count) {
-  //     where.v4 = fieldValues[count - fieldIndex];
-  //   }
-  //   count += 1;
-  //   if (fieldIndex <= count && sum > count) {
-  //     where.v5 = fieldValues[count - fieldIndex];
-  //   }
+    if (fieldIndex <= count && sum > count) {
+      where.v0 = fieldValues[count - fieldIndex];
+    }
+    count += 1;
+    if (fieldIndex <= count && sum > count) {
+      where.v1 = fieldValues[count - fieldIndex];
+    }
+    count += 1;
+    if (fieldIndex <= count && sum > count) {
+      where.v2 = fieldValues[count - fieldIndex];
+    }
+    count += 1;
+    if (fieldIndex <= count && sum > count) {
+      where.v3 = fieldValues[count - fieldIndex];
+    }
+    count += 1;
+    if (fieldIndex <= count && sum > count) {
+      where.v4 = fieldValues[count - fieldIndex];
+    }
+    count += 1;
+    if (fieldIndex <= count && sum > count) {
+      where.v5 = fieldValues[count - fieldIndex];
+    }
 
-  //   await casbinRule.destroy({where});
-  throw new Error('not implemented');
+    await casbinRule.destroy({where});
   }
 }
